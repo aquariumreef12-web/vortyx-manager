@@ -1,755 +1,982 @@
-
-<style id="vortyx-empire-v1">
-/* ==========================================
-   VORTYX EMPIRE — DESIGN SYSTEM
-   Matte Black / Royal Purple / Restrained Gold
-========================================== */
-
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090710">
+<title>VORTYX AGENCY</title>
+<style>
 :root {
-  --vx-bg: #09080d;
-  --vx-panel: #111019;
-  --vx-panel-2: #171421;
-  --vx-panel-hover: #201a2d;
-  --vx-border: rgba(174, 133, 255, .16);
-
-  --vx-purple: #8b5cf6;
-  --vx-purple-light: #b69aff;
-  --vx-purple-dark: #5426a8;
-
-  --vx-gold: #c9a96e;
-  --vx-gold-soft: #e2c995;
-
-  --vx-text: #f5f1fb;
-  --vx-muted: #9c95aa;
-
-  --vx-green: #50d6a0;
-  --vx-red: #f07888;
-  --vx-blue: #72aaff;
-
-  --vx-radius: 17px;
-  --vx-shadow: 0 12px 35px rgba(0,0,0,.28);
+  --bg:#090710;
+  --panel:#110e1b;
+  --panel2:#171225;
+  --purple:#7541d8;
+  --purple2:#a477ff;
+  --gold:#c6a45b;
+  --text:#f5f1fc;
+  --muted:#a49bb5;
+  --border:rgba(164,119,255,.17);
+  --green:#48d6a0;
+  --red:#ff657d;
 }
-
-body.vortyx-empire {
-  background: var(--vx-bg);
-  color: var(--vx-text);
-  font-family: Inter, "Segoe UI", Arial, sans-serif;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
 }
-
-.vx-module {
-  color: var(--vx-text);
-  width: 100%;
-  min-width: 0;
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app{min-height:100vh;display:flex}
+.sidebar{
+  width:245px;flex-shrink:0;
+  background:#0d0a15;
+  border-right:1px solid var(--border);
+  padding:22px 15px;
 }
-
-.vx-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
+.brand{
+  height:76px;display:flex;align-items:center;
+  gap:12px;padding:8px 10px;margin-bottom:25px;
 }
-
-.vx-heading {
-  font-size: clamp(23px, 3vw, 32px);
-  font-weight: 800;
-  letter-spacing: -.7px;
-  margin: 0;
+.brand-logo{
+  width:54px;height:54px;object-fit:contain;
 }
-
-.vx-subheading {
-  color: var(--vx-muted);
-  font-size: 13px;
-  margin-top: 7px;
+.brand-name{font-size:18px;font-weight:900;letter-spacing:2px}
+.brand-sub{font-size:10px;color:var(--gold);letter-spacing:3px;margin-top:5px}
+.nav-label{
+  color:#756b85;font-size:10px;font-weight:800;
+  letter-spacing:2px;padding:14px 12px 8px;
 }
-
-.vx-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 15px;
+.nav-item{
+  width:100%;display:flex;align-items:center;gap:12px;
+  color:#bcb3ca;background:transparent;border:0;
+  padding:12px;border-radius:10px;text-align:left;
+  margin:3px 0;font-size:13px;
 }
-
-.vx-card {
-  min-width: 0;
-  background: linear-gradient(
-    145deg,
-    var(--vx-panel-2),
-    var(--vx-panel)
-  );
-  border: 1px solid var(--vx-border);
-  border-radius: var(--vx-radius);
-  padding: 19px;
-  box-shadow: var(--vx-shadow);
+.nav-item:hover,.nav-item.active{
+  color:white;background:linear-gradient(90deg,#38205e,#211632);
 }
-
-.vx-card-title {
-  color: var(--vx-muted);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .5px;
-  text-transform: uppercase;
+.nav-item.active{box-shadow:inset 3px 0 var(--purple2)}
+.nav-icon{width:20px;text-align:center;color:var(--purple2)}
+.main{min-width:0;flex:1}
+.topbar{
+  height:72px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;background:rgba(13,10,21,.8);
 }
-
-.vx-card-value {
-  font-size: clamp(23px, 3vw, 31px);
-  font-weight: 800;
-  margin-top: 12px;
-  letter-spacing: -.5px;
+.top-title{font-size:14px;font-weight:700;letter-spacing:1px}
+.top-right{display:flex;align-items:center;gap:15px}
+.market{
+  background:var(--panel2);border:1px solid var(--border);
+  color:white;padding:9px 12px;border-radius:9px;
 }
-
-.vx-card-note {
-  font-size: 12px;
-  color: var(--vx-muted);
-  margin-top: 7px;
+.avatar{
+  width:35px;height:35px;border-radius:50%;
+  display:grid;place-items:center;
+  background:#39235d;border:1px solid var(--purple2);
+  font-weight:800;
 }
-
-.vx-accent {
-  color: var(--vx-purple-light);
+.content{padding:28px;max-width:1500px;margin:auto}
+.page{display:none}
+.page.active{display:block}
+.page-heading{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:15px;margin-bottom:25px;
 }
-
-.vx-gold {
-  color: var(--vx-gold-soft);
+h1{font-size:25px;margin:0 0 7px}
+.subtitle{color:var(--muted);font-size:13px}
+.btn{
+  border:1px solid var(--border);border-radius:9px;
+  padding:10px 15px;color:white;background:var(--panel2);
 }
-
-.vx-button {
-  border: 1px solid var(--vx-border);
-  border-radius: 11px;
-  background: var(--vx-panel-2);
-  color: var(--vx-text);
-  padding: 10px 16px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: .2s ease;
+.btn-primary{
+  background:linear-gradient(120deg,#6635b5,#8d55e9);
+  border:0;font-weight:700;
 }
-
-.vx-button:hover {
-  background: var(--vx-panel-hover);
-  border-color: var(--vx-purple);
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.card{
+  background:linear-gradient(145deg,#171225,#100d18);
+  border:1px solid var(--border);border-radius:15px;padding:19px;
 }
-
-.vx-button-primary {
-  background: linear-gradient(
-    120deg,
-    var(--vx-purple-dark),
-    var(--vx-purple)
-  );
-  border-color: transparent;
-  color: white;
+.stat-label{font-size:12px;color:var(--muted)}
+.stat-value{font-size:27px;font-weight:800;margin:12px 0 5px}
+.stat-note{font-size:11px;color:var(--gold)}
+.section-title{font-size:15px;font-weight:800;margin:26px 0 14px}
+.panel{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:14px;padding:18px;
 }
-
-.vx-button-primary:hover {
-  filter: brightness(1.12);
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:650px}
+th,td{text-align:left;padding:13px 11px;border-bottom:1px solid var(--border);font-size:12px}
+th{color:var(--muted);font-weight:700}
+td{color:#e6def2}
+.empty{text-align:center;color:var(--muted);padding:35px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}
+.field{
+  background:#0c0912;border:1px solid var(--border);
+  border-radius:9px;padding:10px 12px;color:white;
+  min-width:150px;outline:none;
 }
-
-.vx-section {
-  margin-top: 23px;
+.field:focus{border-color:var(--purple2)}
+.badge{
+  display:inline-block;border-radius:20px;padding:5px 9px;
+  background:#282039;color:#c5a8ff;font-size:10px;
 }
-
-.vx-section-title {
-  font-size: 17px;
-  font-weight: 750;
-  margin: 0 0 14px;
+.mobile-menu{display:none}
+@media(max-width:900px){
+  .sidebar{width:205px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .content{padding:20px}
 }
-
-.vx-table-wrap {
-  width: 100%;
-  overflow-x: auto;
-  border: 1px solid var(--vx-border);
-  border-radius: 14px;
-  background: var(--vx-panel);
-}
-
-.vx-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 650px;
-}
-
-.vx-table th {
-  color: var(--vx-muted);
-  text-align: left;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: .5px;
-  padding: 14px;
-  border-bottom: 1px solid var(--vx-border);
-}
-
-.vx-table td {
-  padding: 14px;
-  font-size: 13px;
-  border-bottom: 1px solid rgba(255,255,255,.045);
-}
-
-.vx-table tr:last-child td {
-  border-bottom: 0;
-}
-
-.vx-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border-radius: 30px;
-  padding: 5px 10px;
-  font-size: 11px;
-  font-weight: 700;
-  background: rgba(139,92,246,.13);
-  color: var(--vx-purple-light);
-}
-
-.vx-status-success {
-  background: rgba(80,214,160,.12);
-  color: var(--vx-green);
-}
-
-.vx-status-warning {
-  background: rgba(201,169,110,.12);
-  color: var(--vx-gold-soft);
-}
-
-.vx-divider {
-  height: 1px;
-  background: var(--vx-border);
-  margin: 18px 0;
-}
-
-.vx-empty {
-  text-align: center;
-  color: var(--vx-muted);
-  padding: 32px 15px;
-  font-size: 13px;
-}
-
-/* Mobile */
-@media (max-width: 900px) {
-  .vx-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+@media(max-width:650px){
+  .app{display:block}
+  .sidebar{
+    display:none;position:fixed;z-index:20;
+    top:0;bottom:0;left:0;width:260px;
   }
-}
-
-@media (max-width: 560px) {
-  .vx-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 9px;
-  }
-
-  .vx-card {
-    padding: 13px;
-    border-radius: 13px;
-  }
-
-  .vx-card-value {
-    font-size: 22px;
-  }
-
-  .vx-header {
-    align-items: flex-start;
-  }
-
-  .vx-button {
-    padding: 9px 12px;
-  }
-}
-
-@media (max-width: 360px) {
-  .vx-grid {
-    grid-template-columns: 1fr;
-  }
+  .sidebar.open{display:block}
+  .topbar{height:62px;padding:0 14px}
+  .mobile-menu{display:inline-block}
+  .content{padding:17px 13px}
+  .grid{gap:9px}
+  .card{padding:14px}
+  .stat-value{font-size:22px}
+  .page-heading{align-items:flex-start;flex-direction:column}
 }
 </style>
-
-<!-- VORTYX EMPIRE — CREATORS MODULE -->
-<section id="vx-creators" class="vx-module">
-
-  <div class="vx-header">
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <!-- Logo oficial: se va lega de imaginea originală, fără redesenare -->
+    <img class="brand-logo" id="officialLogo" src="vortyx-logo.png" alt="VORTYX">
     <div>
-      <h2 class="vx-heading">Creators Empire</h2>
-      <div class="vx-subheading">
-        Management centralizat pentru România și Germania
+      <div class="brand-name">VORTYX</div>
+      <div class="brand-sub">AGENCY</div>
+    </div>
+  </div>
+
+  <div class="nav-label">GENERAL</div>
+  <button class="nav-item active" data-page="dashboard"><span class="nav-icon">◈</span>Dashboard</button>
+  <button class="nav-item" data-page="creators"><span class="nav-icon">♙</span>Creators</button>
+  <button class="nav-item" data-page="team"><span class="nav-icon">♧</span>Team & Managers</button>
+  <button class="nav-item" data-page="rankings"><span class="nav-icon">♛</span>Rankings</button>
+
+  <div class="nav-label">GROWTH</div>
+  <button class="nav-item" data-page="recruitment"><span class="nav-icon">✦</span>Recruitment</button>
+  <button class="nav-item" data-page="rising"><span class="nav-icon">★</span>Rising Stars</button>
+  <button class="nav-item" data-page="matches"><span class="nav-icon">⚔</span>Match Center</button>
+
+  <div class="nav-label">MANAGEMENT</div>
+  <button class="nav-item" data-page="datacenter"><span class="nav-icon">▤</span>Data Center</button>
+  <button class="nav-item" data-page="competitions"><span class="nav-icon">♜</span>Competitions</button>
+  <button class="nav-item" data-page="academy"><span class="nav-icon">◇</span>Academy</button>
+  <button class="nav-item" data-page="settings"><span class="nav-icon">⚙</span>Settings</button>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <div class="top-right">
+      <button class="btn mobile-menu" id="menuButton">☰</button>
+      <div class="top-title">VORTYX AGENCY MANAGER</div>
+    </div>
+    <div class="top-right">
+      <select class="market" id="marketSelect">
+        <option value="ALL">All markets</option>
+        <option value="RO">Romania</option>
+        <option value="DE">Germany</option>
+      </select>
+      <div class="avatar">V</div>
+    </div>
+  </header>
+
+  <div class="content">
+    <section class="page active" id="page-dashboard">
+      <div class="page-heading">
+        <div>
+          <h1>Dashboard</h1>
+          <div class="subtitle">VORTYX AGENCY · Agency overview</div>
+        </div>
+        <span class="badge">LIVE MANAGEMENT</span>
       </div>
-    </div>
+      <div class="grid">
+        <div class="card"><div class="stat-label">Total creators</div><div class="stat-value" id="statCreators">0</div><div class="stat-note">Romania + Germany</div></div>
+        <div class="card"><div class="stat-label">Active creators</div><div class="stat-value" id="statActive">0</div><div class="stat-note">Current period</div></div>
+        <div class="card"><div class="stat-label">Total diamonds</div><div class="stat-value" id="statDiamonds">0</div><div class="stat-note">Imported data</div></div>
+        <div class="card"><div class="stat-label">Managers</div><div class="stat-value" id="statManagers">0</div><div class="stat-note">Agency team</div></div>
+      </div>
+      <div class="section-title">Agency activity</div>
+      <div class="panel">
+        <div class="empty" id="dashboardActivity">No activity available yet.</div>
+      </div>
+    </section>
 
-    <div style="display:flex;gap:9px;flex-wrap:wrap">
-      <button class="vx-button" onclick="VXCreators.exportCSV()">
-        Export CSV
-      </button>
-      <button class="vx-button vx-button-primary"
-        onclick="document.getElementById('vx-import-file').click()">
-        Import Backstage
-      </button>
-    </div>
-  </div>
-
-  <div class="vx-grid">
-    <div class="vx-card">
-      <div class="vx-card-title">Total creatori</div>
-      <div class="vx-card-value vx-accent" id="vx-total">0</div>
-      <div class="vx-card-note">Baza agenției</div>
-    </div>
-    <div class="vx-card">
-      <div class="vx-card-title">România</div>
-      <div class="vx-card-value" id="vx-ro">0</div>
-      <div class="vx-card-note">Piața RO</div>
-    </div>
-    <div class="vx-card">
-      <div class="vx-card-title">Germania</div>
-      <div class="vx-card-value" id="vx-de">0</div>
-      <div class="vx-card-note">Piața DE</div>
-    </div>
-    <div class="vx-card">
-      <div class="vx-card-title">Contactați</div>
-      <div class="vx-card-value vx-gold" id="vx-contacted">0</div>
-      <div class="vx-card-note">Contacte înregistrate</div>
-    </div>
-  </div>
-
-  <div class="vx-section vx-card">
-    <h3 class="vx-section-title">Import Backstage</h3>
-
-    <div class="vx-grid" style="grid-template-columns:repeat(3,minmax(0,1fr))">
-      <div>
-        <label class="vx-card-title">Piață</label>
-        <select id="vx-import-country" class="vx-button"
-          style="width:100%;margin-top:8px">
-          <option value="RO">România</option>
-          <option value="DE">Germania</option>
+    <section class="page" id="page-creators">
+      <div class="page-heading">
+        <div><h1>Creators</h1><div class="subtitle">Creator database and management</div></div>
+        <button class="btn btn-primary" id="addCreatorButton">+ Add creator</button>
+      </div>
+      <div class="toolbar">
+        <input class="field" id="creatorSearch" placeholder="Search creator or username">
+        <select class="field" id="creatorCountry">
+          <option value="ALL">All countries</option>
+          <option value="RO">Romania</option>
+          <option value="DE">Germany</option>
+        </select>
+        <select class="field" id="creatorContact">
+          <option value="ALL">All contact states</option>
+          <option value="YES">Contacted</option>
+          <option value="NO">Not contacted</option>
         </select>
       </div>
-
-      <div>
-        <label class="vx-card-title">Luna raportului</label>
-        <input id="vx-import-month" type="month"
-          class="vx-button" style="width:100%;margin-top:8px">
+      <div class="panel table-wrap">
+        <table>
+          <thead><tr><th>Creator</th><th>Username</th><th>Country</th><th>Diamonds</th><th>Manager</th><th>Contact</th></tr></thead>
+          <tbody id="creatorTable"><tr><td colspan="6" class="empty">No creators loaded.</td></tr></tbody>
+        </table>
       </div>
+    </section>
 
-      <div>
-        <label class="vx-card-title">Fișier Excel / CSV</label>
-        <input id="vx-import-file" type="file"
-          accept=".xlsx,.xls,.csv"
-          style="width:100%;margin-top:12px;color:var(--vx-muted)">
-      </div>
-    </div>
+    <section class="page" id="page-team">
+      <div class="page-heading"><div><h1>Team & Managers</h1><div class="subtitle">Manager assignments and activity</div></div></div>
+      <div class="panel"><div class="empty">Manager data will appear here.</div></div>
+    </section>
 
-    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-      <button class="vx-button vx-button-primary"
-        onclick="VXCreators.previewImport()">
-        Previzualizare import
-      </button>
-      <button class="vx-button"
-        onclick="VXCreators.clearPreview()">
-        Anulează
-      </button>
-    </div>
+    <section class="page" id="page-rankings">
+      <div class="page-heading"><div><h1>Rankings</h1><div class="subtitle">Agency performance rankings</div></div></div>
+      <div class="panel"><div class="empty">Rankings will appear here.</div></div>
+    </section>
 
-    <div id="vx-import-message" class="vx-card-note"
-      style="margin-top:12px">
-      Selectează țara, luna și fișierul Backstage.
-    </div>
+    <section class="page" id="page-recruitment">
+      <div class="page-heading"><div><h1>VORTYX Recruitment</h1><div class="subtitle">Recruitment pipeline</div></div></div>
+      <div class="panel"><div class="empty">Recruitment data will appear here.</div></div>
+    </section>
 
-    <div id="vx-import-preview"></div>
+    <section class="page" id="page-rising">
+      <div class="page-heading"><div><h1>VORTYX RISING STARS</h1><div class="subtitle">30-day creator growth campaign</div></div></div>
+      <div class="panel"><div class="empty">Campaign statistics will appear here.</div></div>
+    </section>
+
+    <section class="page" id="page-matches">
+      <div class="page-heading"><div><h1>Match Center</h1><div class="subtitle">Match coordination</div></div></div>
+      <div class="panel"><div class="empty">Match information will appear here.</div></div>
+    </section>
+
+    <section class="page" id="page-datacenter">
+      <div class="page-heading"><div><h1>Data Center</h1><div class="subtitle">Backstage imports and monthly statistics</div></div></div>
+      <div class="panel"><div class="empty">Import tools will appear in the next code sections.</div></div>
+    </section>
+
+    <section class="page" id="page-competitions">
+      <div class="page-heading"><div><h1>Competitions</h1><div class="subtitle">Agency competitions</div></div></div>
+      <div class="panel"><div class="empty">Competition management will appear here.</div></div>
+    </section>
+
+    <section class="page" id="page-academy">
+      <div class="page-heading"><div><h1>Academy</h1><div class="subtitle">Creator development</div></div></div>
+      <div class="panel"><div class="empty">Academy content will appear here.</div></div>
+    </section>
+
+    <section class="page" id="page-settings">
+      <div class="page-heading"><div><h1>Settings</h1><div class="subtitle">Application configuration</div></div></div>
+      <div class="panel"><div class="empty">Application settings will appear here.</div></div>
+    </section>
   </div>
-
-  <div class="vx-section vx-card">
-    <h3 class="vx-section-title">Baza de creatori</h3>
-
-    <div style="display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px">
-      <input id="vx-search" class="vx-button"
-        placeholder="Caută creator sau username..."
-        style="flex:1;min-width:180px;text-align:left">
-
-      <select id="vx-country-filter" class="vx-button">
-        <option value="">Toate țările</option>
-        <option value="RO">România</option>
-        <option value="DE">Germania</option>
-      </select>
-
-      <select id="vx-contact-filter" class="vx-button">
-        <option value="">Toate statusurile</option>
-        <option value="yes">Contactați</option>
-        <option value="no">Necontactați</option>
-      </select>
-    </div>
-
-    <div class="vx-table-wrap">
-      <table class="vx-table">
-        <thead>
-          <tr>
-            <th>Creator</th>
-            <th>Username</th>
-            <th>Țară</th>
-            <th>Manager</th>
-            <th>Contactare</th>
-            <th>Acțiuni</th>
-          </tr>
-        </thead>
-        <tbody id="vx-creators-body">
-          <tr>
-            <td colspan="6" class="vx-empty">
-              Datele creatorilor vor apărea după conectarea sursei de date.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
+</main>
+</div>
 <script>
+"use strict";
+
+const VORTYX_APP = {
+  name: "VORTYX AGENCY",
+  version: "1.0.0",
+  mode: "offline",
+  market: "ALL",
+  creators: [],
+  managers: [],
+  activity: []
+};
+
+const navButtons = document.querySelectorAll(".nav-item");
+navButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    navButtons.forEach(item => item.classList.remove("active"));
+    button.classList.add("active");
+    document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
+    const target = document.getElementById("page-" + button.dataset.page);
+    if (target) target.classList.add("active");
+    document.getElementById("sidebar").classList.remove("open");
+  });
+});
+
+document.getElementById("menuButton").addEventListener("click", () => {
+  document.getElementById("sidebar").classList.toggle("open");
+});
+
+document.getElementById("marketSelect").addEventListener("change", event => {
+  VORTYX_APP.market = event.target.value;
+  renderCreators();
+});
+
+function formatNumber(value) {
+  return new Intl.NumberFormat("en-US").format(Number(value) || 0);
+}
+
+function renderDashboard() {
+  document.getElementById("statCreators").textContent =
+    formatNumber(VORTYX_APP.creators.length);
+  document.getElementById("statActive").textContent =
+    formatNumber(VORTYX_APP.creators.filter(c => c.active).length);
+  document.getElementById("statDiamonds").textContent =
+    formatNumber(VORTYX_APP.creators.reduce((sum,c) => sum + (Number(c.diamonds)||0),0));
+  document.getElementById("statManagers").textContent =
+    formatNumber(VORTYX_APP.managers.length);
+}
+
+function renderCreators() {
+  const search = document.getElementById("creatorSearch").value.toLowerCase();
+  const country = document.getElementById("creatorCountry").value;
+  const contact = document.getElementById("creatorContact").value;
+  const market = VORTYX_APP.market;
+
+  const rows = VORTYX_APP.creators.filter(c => {
+    const matchesSearch = (c.name + " " + c.username).toLowerCase().includes(search);
+    const matchesCountry = country === "ALL" || c.country === country;
+    const matchesMarket = market === "ALL" || c.country === market;
+    const matchesContact = contact === "ALL" ||
+      (contact === "YES" && c.contacted) ||
+      (contact === "NO" && !c.contacted);
+    return matchesSearch && matchesCountry && matchesMarket && matchesContact;
+  });
+
+  const body = document.getElementById("creatorTable");
+  body.replaceChildren();
+
+  if (!rows.length) {
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = 6;
+    td.className = "empty";
+    td.textContent = "No creators found.";
+    tr.appendChild(td);
+    body.appendChild(tr);
+    return;
+  }
+
+  rows.forEach(c => {
+    const tr = document.createElement("tr");
+    [c.name, c.username, c.country, formatNumber(c.diamonds),
+     c.managerName || "Unassigned", c.contacted ? "Contacted" : "Not contacted"
+    ].forEach(value => {
+      const td = document.createElement("td");
+      td.textContent = value;
+      tr.appendChild(td);
+    });
+    body.appendChild(tr);
+  });
+}
+
+["creatorSearch","creatorCountry","creatorContact"].forEach(id => {
+  document.getElementById(id).addEventListener("input", renderCreators);
+});
+
+document.getElementById("addCreatorButton").addEventListener("click", () => {
+  alert("Creator management will be implemented in the following code sections.");
+});
+
+renderDashboard();
+renderCreators();
+</script>
+<script>
+/* VORTYX AGENCY — PART 2/5
+   Offline database, creator management, manager assignment.
+*/
+
 (function () {
   "use strict";
 
-  const VXCreators = {
-    data: [],
-    preview: [],
-    managers: {},
+  const STORAGE_KEY = "vortyx_agency_offline_v1";
 
-    normalize(value) {
-      return String(value || "")
-        .trim()
-        .toLowerCase()
-        .replace(/^@/, "");
-    },
-
-    creatorName(row) {
-      const candidates = [
-        row.display_name,
-        row.nickname,
-        row.full_name,
-        row.name,
-        row.tiktok_username,
-        row.username
-      ];
-
-      return candidates.find(v =>
-        v && !/^[0-9a-f-]{30,}$/i.test(String(v))
-      ) || "Creator fără nume";
-    },
-
-    setData(rows, managers = {}) {
-      this.data = Array.isArray(rows) ? rows : [];
-      this.managers = managers || {};
-      this.render();
-    },
-
-    managerName(row) {
-      const id = row.manager_id;
-      if (!id) return "Neatribuit";
-
-      const manager = this.managers[id];
-
-      if (typeof manager === "string") return manager;
-
-      return manager?.display_name ||
-        manager?.full_name ||
-        "Manager neconfigurat";
-    },
-
-    render() {
-      const search = this.normalize(
-        document.getElementById("vx-search")?.value
-      );
-
-      const country =
-        document.getElementById("vx-country-filter")?.value || "";
-
-      const contact =
-        document.getElementById("vx-contact-filter")?.value || "";
-
-      const filtered = this.data.filter(row => {
-        const name = this.normalize(this.creatorName(row));
-        const username = this.normalize(row.tiktok_username);
-        const matchesSearch =
-          !search || name.includes(search) || username.includes(search);
-
-        const matchesCountry = !country || row.country === country;
-
-        const matchesContact =
-          !contact ||
-          (contact === "yes" && row.contacted) ||
-          (contact === "no" && !row.contacted);
-
-        return matchesSearch && matchesCountry && matchesContact;
-      });
-
-      document.getElementById("vx-total").textContent = this.data.length;
-      document.getElementById("vx-ro").textContent =
-        this.data.filter(x => x.country === "RO").length;
-      document.getElementById("vx-de").textContent =
-        this.data.filter(x => x.country === "DE").length;
-      document.getElementById("vx-contacted").textContent =
-        this.data.filter(x => x.contacted).length;
-
-      const body = document.getElementById("vx-creators-body");
-
-      if (!filtered.length) {
-        body.innerHTML =
-          '<tr><td colspan="6" class="vx-empty">Nu există rezultate.</td></tr>';
-        return;
-      }
-
-      body.replaceChildren();
-
-      filtered.forEach(row => {
-        const tr = document.createElement("tr");
-
-        const values = [
-          this.creatorName(row),
-          row.tiktok_username || "—",
-          row.country === "DE" ? "Germania" : "România",
-          this.managerName(row),
-          row.contacted ? "Contactat" : "Necontactat"
-        ];
-
-        values.forEach(value => {
-          const td = document.createElement("td");
-          td.textContent = value;
-          tr.appendChild(td);
-        });
-
-        const actions = document.createElement("td");
-        const button = document.createElement("button");
-
-        button.className = "vx-button";
-        button.textContent = row.contacted ? "Contactat ✓" : "Marchează contactat";
-
-        button.addEventListener("click", () => {
-          if (typeof window.vxRecordCreatorContact === "function") {
-            window.vxRecordCreatorContact(row.id);
-          } else {
-            alert("Conectarea cu modulul de contactare nu este configurată.");
-          }
-        });
-
-        actions.appendChild(button);
-        tr.appendChild(actions);
-        body.appendChild(tr);
-      });
-    },
-
-    async previewImport() {
-      const file = document.getElementById("vx-import-file").files[0];
-      const country = document.getElementById("vx-import-country").value;
-      const month = document.getElementById("vx-import-month").value;
-      const message = document.getElementById("vx-import-message");
-
-      if (!file || !month) {
-        message.textContent = "Selectează fișierul și luna raportului.";
-        return;
-      }
-
-      if (!window.XLSX) {
-        message.textContent = "Biblioteca XLSX nu este încărcată.";
-        return;
-      }
-
+  const DB = {
+    read() {
       try {
-        const buffer = await file.arrayBuffer();
-        const workbook = XLSX.read(buffer, { type: "array" });
-        const sheet = workbook.Sheets[workbook.SheetNames[0]];
-        const rows = XLSX.utils.sheet_to_json(sheet, { defval: "" });
-
-        if (!rows.length) throw new Error("Fișierul nu conține rânduri.");
-
-        this.preview = rows.map(row => ({
-          source: row,
-          country,
-          report_month: month
-        }));
-
-        message.textContent =
-          "Previzualizare: " + rows.length +
-          " rânduri. Verifică structura înainte de import.";
-
-        const preview = document.getElementById("vx-import-preview");
-        preview.textContent = "";
-
-        const sample = rows.slice(0, 5);
-        const pre = document.createElement("pre");
-        pre.style.cssText =
-          "white-space:pre-wrap;overflow-wrap:anywhere;color:var(--vx-muted);font-size:11px";
-        pre.textContent = JSON.stringify(sample, null, 2);
-        preview.appendChild(pre);
-
-        const confirm = document.createElement("button");
-        confirm.className = "vx-button vx-button-primary";
-        confirm.textContent = "Trimite spre integrarea Backstage";
-        confirm.style.marginTop = "10px";
-        confirm.addEventListener("click", () => {
-          if (typeof window.vxImportBackstage === "function") {
-            window.vxImportBackstage({
-              country,
-              month,
-              rows: this.preview
-            });
-          } else {
-            message.textContent =
-              "Previzualizarea este gata, dar integrarea sigură cu Supabase trebuie conectată în partea 5.";
-          }
-        });
-        preview.appendChild(confirm);
-
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : {
+          creators: [],
+          managers: [],
+          imports: [],
+          monthlyStats: [],
+          activity: []
+        };
       } catch (error) {
-        message.textContent = "Eroare la citirea fișierului: " + error.message;
+        console.error("VORTYX storage read:", error);
+        return {
+          creators: [], managers: [], imports: [],
+          monthlyStats: [], activity: []
+        };
       }
     },
 
-    clearPreview() {
-      this.preview = [];
-      document.getElementById("vx-import-preview").textContent = "";
-      document.getElementById("vx-import-message").textContent =
-        "Previzualizarea a fost anulată.";
+    write(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      return true;
     },
 
-    exportCSV() {
-      const headers = [
-        "Creator", "Username", "Country", "Manager", "Contacted"
-      ];
-
-      const rows = this.data.map(row => [
-        this.creatorName(row),
-        row.tiktok_username || "",
-        row.country || "",
-        this.managerName(row),
-        row.contacted ? "Da" : "Nu"
-      ]);
-
-      const csv = [headers, ...rows]
-        .map(row => row.map(v =>
-          '"' + String(v).replace(/"/g, '""') + '"'
-        ).join(","))
-        .join("\r\n");
-
-      const blob = new Blob(["\uFEFF" + csv], {
-        type: "text/csv;charset=utf-8"
-      });
-
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "VORTYX_CREATORS.csv";
-      a.click();
-      URL.revokeObjectURL(url);
+    update(callback) {
+  const data = this.read();
+  const result = callback(data);
+  this.write(data);
+  return result === undefined ? data : result;
+}
     }
   };
 
-  window.VXCreators = VXCreators;
+  function uid() {
+    return "vx_" + Date.now().toString(36) +
+      Math.random().toString(36).slice(2, 8);
+  }
 
-  ["vx-search", "vx-country-filter", "vx-contact-filter"].forEach(id => {
-    document.getElementById(id)?.addEventListener("input", () => {
-      VXCreators.render();
+  function logActivity(action, details) {
+    DB.update(data => {
+      data.activity.unshift({
+        id: uid(),
+        action,
+        details,
+        date: new Date().toISOString()
+      });
+      data.activity = data.activity.slice(0, 500);
     });
-  });
+  }
+
+  function cleanUsername(value) {
+    return String(value || "")
+      .trim()
+      .replace(/^@/, "")
+      .toLowerCase();
+  }
+
+  function normalizeCountry(value) {
+    const v = String(value || "").trim().toLowerCase();
+    if (["ro", "romania", "românia"].includes(v)) return "RO";
+    if (["de", "germany", "deutschland", "germania"].includes(v)) return "DE";
+    return "";
+  }
+
+  function findCreator(data, username, country) {
+    const key = cleanUsername(username);
+    return data.creators.find(c =>
+      cleanUsername(c.username) === key &&
+      c.country === country
+    );
+  }
+
+  function renderCreatorTable() {
+    const data = DB.read();
+    const search = document.getElementById("creatorSearch");
+    const countryFilter = document.getElementById("creatorCountry");
+    const contactFilter = document.getElementById("creatorContact");
+    const marketFilter = document.getElementById("marketSelect");
+    const tbody = document.getElementById("creatorTable");
+
+    if (!tbody) return;
+
+    const q = (search?.value || "").toLowerCase().trim();
+    const country = countryFilter?.value || "ALL";
+    const contact = contactFilter?.value || "ALL";
+    const market = marketFilter?.value || "ALL";
+
+    const creators = data.creators.filter(c => {
+      const text = `${c.name || ""} ${c.username || ""}`.toLowerCase();
+      return (!q || text.includes(q)) &&
+        (country === "ALL" || c.country === country) &&
+        (market === "ALL" || c.country === market) &&
+        (contact === "ALL" ||
+          (contact === "YES" && c.contacted) ||
+          (contact === "NO" && !c.contacted));
+    });
+
+    tbody.replaceChildren();
+
+    if (!creators.length) {
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.colSpan = 6;
+      td.className = "empty";
+      td.textContent = "No creators found.";
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+      return;
+    }
+
+    creators.forEach(c => {
+      const tr = document.createElement("tr");
+
+      const values = [
+        c.name || "Unnamed creator",
+        "@" + (c.username || ""),
+        c.country || "—",
+        new Intl.NumberFormat("en-US").format(Number(c.diamonds) || 0),
+        c.managerName || "Unassigned",
+        c.contacted ? "Contacted" : "Not contacted"
+      ];
+
+      values.forEach(value => {
+        const td = document.createElement("td");
+        td.textContent = value;
+        tr.appendChild(td);
+      });
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  function refreshDashboard() {
+    const data = DB.read();
+    const creators = data.creators;
+    const managers = data.managers;
+
+    const set = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    };
+
+    set("statCreators", creators.length);
+    set("statActive", creators.filter(c => c.active).length);
+    set("statDiamonds", new Intl.NumberFormat("en-US").format(
+      creators.reduce((sum, c) => sum + (Number(c.diamonds) || 0), 0)
+    ));
+    set("statManagers", managers.length);
+
+    const activity = document.getElementById("dashboardActivity");
+    if (activity) {
+      activity.textContent = data.activity.length
+        ? data.activity.slice(0, 8).map(item =>
+            `${new Date(item.date).toLocaleString()} — ${item.action}: ${item.details}`
+          ).join("\n")
+        : "No activity available yet.";
+      activity.style.whiteSpace = "pre-line";
+    }
+  }
+
+  function addCreator(input) {
+    const username = cleanUsername(input.username);
+    const country = normalizeCountry(input.country);
+
+    if (!username || !country) {
+      throw new Error("Username and country are required.");
+    }
+
+    let result;
+
+    DB.update(data => {
+      const existing = findCreator(data, username, country);
+
+      if (existing) {
+        result = existing;
+        return;
+      }
+
+      result = {
+        id: uid(),
+        name: String(input.name || username).trim(),
+        username,
+        country,
+        diamonds: Number(input.diamonds) || 0,
+        liveMinutes: Number(input.liveMinutes) || 0,
+        validLiveDays: Number(input.validLiveDays) || 0,
+        active: Boolean(input.active),
+        managerId: "",
+        managerName: "",
+        contacted: false,
+        contactedBy: "",
+        contactedAt: "",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+
+      data.creators.push(result);
+    });
+
+    if (result) {
+      logActivity("Creator added", `@${username} (${country})`);
+    }
+
+    refreshAll();
+    return result;
+  }
+
+  function updateCreator(id, changes) {
+    let updated = false;
+
+    DB.update(data => {
+      const creator = data.creators.find(c => c.id === id);
+      if (!creator) return;
+
+      const allowed = [
+        "name", "diamonds", "liveMinutes",
+        "validLiveDays", "active"
+      ];
+
+      allowed.forEach(key => {
+        if (Object.prototype.hasOwnProperty.call(changes, key)) {
+          creator[key] = key === "name"
+            ? String(changes[key]).trim()
+            : key === "active"
+              ? Boolean(changes[key])
+              : Math.max(0, Number(changes[key]) || 0);
+        }
+      });
+
+      creator.updatedAt = new Date().toISOString();
+      updated = true;
+    });
+
+    if (updated) logActivity("Creator updated", id);
+    refreshAll();
+    return updated;
+  }
+
+  function addManager(name, country) {
+    const displayName = String(name || "").trim();
+    const market = normalizeCountry(country);
+
+    if (!displayName || !market) {
+      throw new Error("Manager name and country are required.");
+    }
+
+    const manager = {
+      id: uid(),
+      displayName,
+      country: market,
+      createdAt: new Date().toISOString()
+    };
+
+    DB.update(data => data.managers.push(manager));
+    logActivity("Manager added", `${displayName} (${market})`);
+    refreshAll();
+    return manager;
+  }
+
+  function assignManager(creatorId, managerId) {
+    let assignedName = "";
+
+    DB.update(data => {
+      const creator = data.creators.find(c => c.id === creatorId);
+      const manager = data.managers.find(m => m.id === managerId);
+
+      if (!creator) throw new Error("Creator not found.");
+      if (manager && manager.country !== creator.country) {
+        throw new Error("Manager and creator must belong to the same country.");
+      }
+
+      creator.managerId = manager ? manager.id : "";
+      creator.managerName = manager ? manager.displayName : "";
+      creator.updatedAt = new Date().toISOString();
+      assignedName = creator.managerName;
+    });
+
+    logActivity("Manager assignment", assignedName || "Unassigned");
+    refreshAll();
+  }
+
+  function markContacted(creatorId, managerId) {
+    let managerName = "";
+
+    DB.update(data => {
+      const creator = data.creators.find(c => c.id === creatorId);
+      if (!creator) throw new Error("Creator not found.");
+
+      const manager = data.managers.find(m => m.id === managerId);
+      if (!manager) throw new Error("Select a valid manager.");
+
+      if (manager.country !== creator.country) {
+        throw new Error("Manager and creator countries do not match.");
+      }
+
+      creator.contacted = true;
+      creator.contactedBy = manager.id;
+      creator.contactedByName = manager.displayName;
+      creator.contactedAt = new Date().toISOString();
+      managerName = manager.displayName;
+    });
+
+    logActivity("Creator contacted", `${creatorId} by ${managerName}`);
+    refreshAll();
+  }
+
+  function refreshAll() {
+    renderCreatorTable();
+    refreshDashboard();
+  }
+
+  window.VORTYX_OFFLINE = {
+    database: DB,
+    addCreator,
+    updateCreator,
+    addManager,
+    assignManager,
+    markContacted,
+    renderCreators: renderCreatorTable,
+    refresh: refreshAll,
+    getData: () => DB.read()
+  };
+
+  refreshAll();
 
 })();
 </script>
-
-<section id="vx-team" class="vx-module">
-  <div class="vx-header">
-    <div>
-      <h2 class="vx-heading">Empire Team</h2>
-      <div class="vx-subheading">Administrarea managerilor și a echipelor</div>
-    </div>
-  </div>
-
-  <div class="vx-grid">
-    <div class="vx-card">
-      <div class="vx-card-title">Manageri</div>
-      <div class="vx-card-value vx-accent" id="vx-manager-total">0</div>
-    </div>
-    <div class="vx-card">
-      <div class="vx-card-title">Creatori atribuiți</div>
-      <div class="vx-card-value" id="vx-assigned-total">0</div>
-    </div>
-    <div class="vx-card">
-      <div class="vx-card-title">Contactări</div>
-      <div class="vx-card-value vx-gold" id="vx-team-contacted">0</div>
-    </div>
-    <div class="vx-card">
-      <div class="vx-card-title">Neatribuiți</div>
-      <div class="vx-card-value" id="vx-unassigned">0</div>
-    </div>
-  </div>
-
-  <div class="vx-section vx-card">
-    <h3 class="vx-section-title">Manageri și performanță</h3>
-    <div class="vx-table-wrap">
-      <table class="vx-table">
-        <thead>
-          <tr>
-            <th>Manager</th>
-            <th>Creatori</th>
-            <th>Contactați</th>
-            <th>Țară</th>
-            <th>Activitate</th>
-          </tr>
-        </thead>
-        <tbody id="vx-manager-body">
-          <tr><td colspan="5" class="vx-empty">Datele vor apărea după conectare.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="vx-section vx-card">
-    <h3 class="vx-section-title">Atribuire creator</h3>
-    <div class="vx-grid" style="grid-template-columns:repeat(2,minmax(0,1fr))">
-      <select id="vx-assign-creator" class="vx-button">
-        <option value="">Selectează creatorul</option>
-      </select>
-      <select id="vx-assign-manager" class="vx-button">
-        <option value="">Selectează managerul</option>
-      </select>
-    </div>
-    <button class="vx-button vx-button-primary"
-      style="margin-top:14px" onclick="VXTeam.assign()">
-      Salvează atribuirea
-    </button>
-    <div id="vx-team-message" class="vx-card-note"></div>
-  </div>
-</section>
-
 <script>
-(function(){
-  const VXTeam = {
-    managers: [],
-    creators: [],
+/* VORTYX AGENCY — PART 3/5
+   Backstage XLSX/CSV import, offline mode, monthly history.
+*/
+(function () {
+  "use strict";
 
-    setData(managers, creators) {
-      this.managers = managers || [];
-      this.creators = creators || [];
-      this.render();
-    },
+  const V = window.VORTYX_OFFLINE;
+  if (!V) throw new Error("VORTYX_OFFLINE missing. Add Part 2 first.");
 
-    render() {
-      const assigned = this.creators.filter(c => c.manager_id);
-      const contacted = this.creators.filter(c => c.contacted);
+  const DB = V.database;
+  const $ = id => document.getElementById(id);
 
-      document.getElementById("vx-manager-total").textContent =
-        this.managers.length;
-      document.getElementById("vx-assigned-total").textContent =
-        assigned.length;
-      document.getElementById("vx-team-contacted").textContent =
-        contacted.length;
-      document.getElementById("vx-unassigned").textContent =
-        this.creators.length - assigned.length;
+  function ensureImportUI() {
+    const page = $("page-datacenter");
+    if (!page || $("vxImportPanel")) return;
 
-      const body = document.getElementById("vx-manager-body");
-      body.replaceChildren();
+    const panel = document.createElement("div");
+    panel.id = "vxImportPanel";
+    panel.className = "panel";
+    panel.innerHTML = `
+      <h3>Backstage Import</h3>
+      <p class="subtitle">Importă datele creatorilor din România sau Germania.</p>
+      <div class="toolbar">
+        <select class="field" id="vxImportCountry">
+          <option value="RO">Romania</option>
+          <option value="DE">Germany</option>
+        </select>
+        <input class="field" id="vxImportMonth" type="month">
+        <input class="field" id="vxImportFile" type="file" accept=".xlsx,.xls,.csv">
+      </div>
+      <div class="toolbar">
+        <button class="btn btn-primary" id="vxPreviewBtn">Preview import</button>
+        <button class="btn" id="vxRunImportBtn" disabled>Confirm import</button>
+        <button class="btn" id="vxOfflineTestBtn">Load offline test data</button>
+      </div>
+      <div id="vxImportStatus" class="subtitle">Offline mode: no Supabase writes.</div>
+      <div id="vxImportPreview" class="table-wrap"></div>
+      <div class="section-title">Import history</div>
+      <div id="vxImportHistory"></div>
+    `;
+    page.appendChild(panel);
 
-      this.managers.forEach(manager => {
-        const list = this.creators.filter(c =>
-          c.manager_id === manager.manager_id
-        );
-        const countries = [...new Set(list.map(c => c.country))];
+    $("vxImportMonth").value = new Date().toISOString().slice(0, 7);
 
+    $("vxPreviewBtn").addEventListener("click", previewFile);
+    $("vxRunImportBtn").addEventListener("click", commitImport);
+    $("vxOfflineTestBtn").addEventListener("click", loadTestData);
+    renderHistory();
+  }
+
+  let pendingRows = [];
+
+  function status(message, error) {
+    const el = $("vxImportStatus");
+    if (!el) return;
+    el.textContent = message;
+    el.style.color = error ? "#ff657d" : "#48d6a0";
+  }
+
+  function normalizeHeader(value) {
+    return String(value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "");
+  }
+
+  const HEADER_MAP = {
+    name: [
+      "name", "creatorname", "nickname", "displayname",
+      "creator", "nume", "numecreator", "nicknamecreator"
+    ],
+    username: [
+      "username", "uniqueid", "tiktokid", "handle",
+      "account", "accountname", "userid", "creatorusername"
+    ],
+    diamonds: [
+      "diamonds", "diamond", "totaldiamonds",
+      "giftpoints", "points", "totalpoints"
+    ],
+    liveMinutes: [
+      "liveminutes", "livetime", "liveduration",
+      "livestreamduration", "minuteslive", "duration"
+    ],
+    validLiveDays: [
+      "validlivedays", "livedays", "validdays",
+      "dayslive", "validlivestreamdays"
+    ],
+    active: ["active", "isactive", "status"]
+  };
+
+  function findColumn(headers, field) {
+    const accepted = HEADER_MAP[field] || [];
+    return headers.findIndex(h => accepted.includes(normalizeHeader(h)));
+  }
+
+  function numberValue(value) {
+    if (typeof value === "number") return value;
+    const cleaned = String(value || "")
+      .replace(/\s/g, "")
+      .replace(",", ".")
+      .replace(/[^\d.-]/g, "");
+    const parsed = Number(cleaned);
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+
+  function parseRows(matrix) {
+    if (!Array.isArray(matrix) || matrix.length < 2) {
+      throw new Error("Fișierul nu conține suficiente rânduri.");
+    }
+
+    let headerIndex = 0;
+    let headers = matrix[0] || [];
+
+    // Detectează antetul și în primele 10 rânduri.
+    for (let i = 0; i < Math.min(matrix.length, 10); i++) {
+      const candidate = (matrix[i] || []).map(normalizeHeader);
+      if (
+        candidate.some(h => HEADER_MAP.username.includes(h)) &&
+        candidate.some(h => HEADER_MAP.diamonds.includes(h))
+      ) {
+        headerIndex = i;
+        headers = matrix[i];
+        break;
+      }
+    }
+
+    const columns = {};
+    Object.keys(HEADER_MAP).forEach(field => {
+      columns[field] = findColumn(headers, field);
+    });
+
+    if (columns.username < 0) {
+      throw new Error("Nu am identificat coloana Username / Unique ID.");
+    }
+
+    if (columns.diamonds < 0) {
+      throw new Error("Nu am identificat coloana Diamonds / Points.");
+    }
+
+    const result = [];
+
+    matrix.slice(headerIndex + 1).forEach(row => {
+      if (!row || !row.length) return;
+
+      const username = String(row[columns.username] || "")
+        .trim().replace(/^@/, "");
+
+      if (!username) return;
+
+      const get = field =>
+        columns[field] >= 0 ? row[columns[field]] : "";
+
+      result.push({
+        name: String(get("name") || username).trim(),
+        username,
+        diamonds: numberValue(get("diamonds")),
+        liveMinutes: numberValue(get("liveMinutes")),
+        validLiveDays: numberValue(get("validLiveDays")),
+        active: /active|yes|true|1|activ/i.test(String(get("active")))
+      });
+    });
+
+    if (!result.length) {
+      throw new Error("Nu au fost găsiți creatori în fișier.");
+    }
+
+    return result;
+  }
+
+  async function readFile(file) {
+    const extension = file.name.split(".").pop().toLowerCase();
+
+    if (extension === "csv") {
+      const text = await file.text();
+      const rows = [];
+      let row = [], cell = "", quoted = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        if (char === '"') {
+          if (quoted && text[i + 1] === '"') {
+            cell += '"'; i++;
+          } else quoted = !quoted;
+        } else if (char === "," && !quoted) {
+          row.push(cell); cell = "";
+        } else if ((char === "\n" || char === "\r") && !quoted) {
+          if (char === "\r" && text[i + 1] === "\n") i++;
+          row.push(cell); rows.push(row);
+          row = []; cell = "";
+        } else cell += char;
+      }
+
+      if (cell || row.length) {
+        row.push(cell); rows.push(row);
+      }
+      return rows;
+    }
+
+    if (!window.XLSX) {
+      throw new Error("Lipsește biblioteca XLSX. Importul Excel nu este disponibil.");
+    }
+
+    const buffer = await file.arrayBuffer();
+    const workbook = XLSX.read(buffer, { type: "array" });
+    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+    return XLSX.utils.sheet_to_json(firstSheet, {
+      header: 1,
+      defval: ""
+    });
+  }
+
+  async function previewFile() {
+    try {
+      const file = $("vxImportFile").files[0];
+      if (!file) throw new Error("Selectează un fișier Excel sau CSV.");
+
+      const matrix = await readFile(file);
+      pendingRows = parseRows(matrix);
+
+      const data = DB.read();
+      const country = $("vxImportCountry").value;
+
+      const duplicates = pendingRows.filter(row =>
+        data.creators.some(c =>
+          c.country === country &&
+          c.username.toLowerCase() === row.username.toLowerCase()
+        )
+      ).length;
+
+      const preview = $("vxImportPreview");
+      preview.innerHTML = "";
+
+      const table = document.createElement("table");
+      table.innerHTML = `
+        <thead><tr>
+          <th>Creator</th><th>Username</th>
+          <th>Diamonds</th><th>LIVE minutes</th>
+          <th>Valid days</th><th>Status</th>
+        </tr></thead>`;
+      const body = document.createElement("tbody");
+
+      pendingRows.slice(0, 100).forEach(row => {
         const tr = document.createElement("tr");
         [
-          manager.display_name || manager.full_name || "Manager",
-          list.length,
-          list.filter(c => c.contacted).length,
-          countries.map(c => c === "DE" ? "Germania" : "România").join(", ") || "—",
-          manager.status || "Activ"
+          row.name, "@" + row.username,
+          row.diamonds, row.liveMinutes,
+          row.validLiveDays, "Ready"
         ].forEach(value => {
           const td = document.createElement("td");
           td.textContent = value;
@@ -758,345 +985,712 @@ body.vortyx-empire {
         body.appendChild(tr);
       });
 
-      const creatorSelect = document.getElementById("vx-assign-creator");
-      const managerSelect = document.getElementById("vx-assign-manager");
+      table.appendChild(body);
+      preview.appendChild(table);
 
-      creatorSelect.replaceChildren(new Option("Selectează creatorul", ""));
-      managerSelect.replaceChildren(new Option("Selectează managerul", ""));
-
-      this.creators.forEach(c => {
-        const name = window.VXCreators?.creatorName(c) ||
-          c.tiktok_username || "Creator";
-        creatorSelect.add(new Option(name, c.id));
-      });
-
-      this.managers.forEach(m => {
-        managerSelect.add(new Option(
-          m.display_name || m.full_name || "Manager",
-          m.manager_id
-        ));
-      });
-    },
-
-    async assign() {
-      const creatorId = document.getElementById("vx-assign-creator").value;
-      const managerId = document.getElementById("vx-assign-manager").value;
-      const message = document.getElementById("vx-team-message");
-
-      if (!creatorId || !managerId) {
-        message.textContent = "Selectează creatorul și managerul.";
-        return;
-      }
-
-      if (typeof window.vxAssignCreator !== "function") {
-        message.textContent =
-          "Integrarea de salvare Supabase va fi conectată în partea 5.";
-        return;
-      }
-
-      try {
-        await window.vxAssignCreator(creatorId, managerId);
-        message.textContent = "Atribuire transmisă cu succes.";
-      } catch(error) {
-        message.textContent = "Eroare: " + error.message;
-      }
-    }
-  };
-
-  window.VXTeam = VXTeam;
-})();
-</script>
-
-<section id="vx-rankings" class="vx-module">
-  <div class="vx-header">
-    <div>
-      <h2 class="vx-heading">Empire Rankings</h2>
-      <div class="vx-subheading">Performanță și evoluție</div>
-    </div>
-  </div>
-
-  <div class="vx-grid">
-    <div class="vx-card">
-      <div class="vx-card-title">Diamante</div>
-      <div class="vx-card-value vx-accent" id="vx-rank-diamonds">0</div>
-    </div>
-    <div class="vx-card">
-      <div class="vx-card-title">Creatori activi</div>
-      <div class="vx-card-value" id="vx-rank-active">0</div>
-    </div>
-    <div class="vx-card">
-      <div class="vx-card-title">LIVE ore</div>
-      <div class="vx-card-value vx-gold" id="vx-rank-hours">0</div>
-    </div>
-    <div class="vx-card">
-      <div class="vx-card-title">Zile LIVE</div>
-      <div class="vx-card-value" id="vx-rank-days">0</div>
-    </div>
-  </div>
-
-  <div class="vx-section vx-card">
-    <h3 class="vx-section-title">VORTYX RISING STARS</h3>
-    <p class="vx-subheading">
-      Evoluția creatorilor pe baza rezultatelor și activității LIVE.
-    </p>
-    <div class="vx-table-wrap">
-      <table class="vx-table">
-        <thead>
-          <tr>
-            <th>Loc</th>
-            <th>Creator</th>
-            <th>Diamante luna trecută</th>
-            <th>Durată LIVE</th>
-            <th>Zile LIVE</th>
-            <th>Evoluție</th>
-          </tr>
-        </thead>
-        <tbody id="vx-rising-body">
-          <tr><td colspan="6" class="vx-empty">Așteaptă datele istorice Backstage.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="vx-recruitment" class="vx-module vx-section">
-  <div class="vx-header">
-    <div>
-      <h2 class="vx-heading">VORTYX Recruitment</h2>
-      <div class="vx-subheading">Dezvoltarea rețelei internaționale</div>
-    </div>
-  </div>
-
-  <div class="vx-grid">
-    <div class="vx-card">
-      <div class="vx-card-title">Obiectiv lunar</div>
-      <div class="vx-card-value vx-gold">20–30</div>
-      <div class="vx-card-note">Creatori noi</div>
-    </div>
-    <div class="vx-card">
-      <div class="vx-card-title">Piață</div>
-      <div class="vx-card-value vx-accent">RO + DE</div>
-      <div class="vx-card-note">Două piețe</div>
-    </div>
-  </div>
-
-  <div class="vx-section vx-card">
-    <h3 class="vx-section-title">Linkuri de recrutare</h3>
-    <div class="vx-grid" style="grid-template-columns:repeat(2,minmax(0,1fr))">
-      <div>
-        <strong>România</strong>
-        <p><a href="https://www.tiktok.com/t/ZSqTWLUsm/"
-          target="_blank" rel="noopener">Link înscriere RO</a></p>
-      </div>
-      <div>
-        <strong>Germania</strong>
-        <p><a href="https://www.tiktok.com/t/ZSggE3nym/"
-          target="_blank" rel="noopener">Link înscriere DE</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="vx-competitions" class="vx-module vx-section">
-  <div class="vx-card">
-    <h2 class="vx-heading">Empire Competitions</h2>
-    <div class="vx-subheading">Competiții și provocări pentru creatori</div>
-    <div class="vx-divider"></div>
-    <h3 class="vx-section-title">VORTYX RISING STARS</h3>
-    <span class="vx-status vx-status-success">Campanie 30 zile</span>
-    <p class="vx-card-note">
-      Participanți: toți creatorii eligibili din agenție.
-    </p>
-  </div>
-</section>
-
-<section id="vx-academy" class="vx-module vx-section">
-  <div class="vx-card">
-    <h2 class="vx-heading">VORTYX Academy</h2>
-    <div class="vx-subheading">Dezvoltarea creatorilor și managerilor</div>
-    <div class="vx-grid" style="margin-top:18px">
-      <div class="vx-card">
-        <strong>Creator Growth</strong>
-        <p class="vx-card-note">Strategii LIVE și dezvoltarea comunității.</p>
-      </div>
-      <div class="vx-card">
-        <strong>Manager Training</strong>
-        <p class="vx-card-note">Organizare, recrutare și coordonare.</p>
-      </div>
-      <div class="vx-card">
-        <strong>Content Strategy</strong>
-        <p class="vx-card-note">Conținut și identitate personală.</p>
-      </div>
-      <div class="vx-card">
-        <strong>Performance</strong>
-        <p class="vx-card-note">Obiective și analiză de rezultate.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-(function(){
-  const VXRising = {
-    rows: [],
-
-    setData(rows) {
-      this.rows = Array.isArray(rows) ? rows : [];
-      this.render();
-    },
-
-    render() {
-      const body = document.getElementById("vx-rising-body");
-      body.replaceChildren();
-
-      const sorted = [...this.rows].sort((a,b) =>
-        Number(b.diamonds_last_month || 0) -
-        Number(a.diamonds_last_month || 0)
+      $("vxRunImportBtn").disabled = false;
+      status(
+        `Preview: ${pendingRows.length} rânduri valide. ` +
+        `${duplicates} creatori existenți vor fi actualizați.`
       );
+    } catch (error) {
+      pendingRows = [];
+      $("vxRunImportBtn").disabled = true;
+      status(error.message, true);
+    }
+  }
 
-      sorted.forEach((row,index) => {
-        const tr = document.createElement("tr");
-        const values = [
-          index + 1,
-          row.display_name || row.username || "Creator",
-          Number(row.diamonds_last_month || 0).toLocaleString("ro-RO"),
-          row.live_duration_last_month || "—",
-          row.live_days_last_month ?? "—",
-          row.growth_label || "—"
-        ];
+  function commitImport() {
+    try {
+      if (!pendingRows.length) {
+        throw new Error("Nu există date pregătite pentru import.");
+      }
 
-        values.forEach(value => {
-          const td = document.createElement("td");
-          td.textContent = value;
-          tr.appendChild(td);
+      const country = $("vxImportCountry").value;
+      const month = $("vxImportMonth").value;
+
+      if (!month) throw new Error("Selectează luna importului.");
+
+      const result = DB.update(data => {
+        let inserted = 0;
+        let updated = 0;
+
+        pendingRows.forEach(row => {
+          let creator = data.creators.find(c =>
+            c.country === country &&
+            c.username.toLowerCase() === row.username.toLowerCase()
+          );
+
+          if (!creator) {
+            creator = {
+              id: "vx_" + Date.now().toString(36) +
+                Math.random().toString(36).slice(2, 7),
+              name: row.name,
+              username: row.username,
+              country,
+              diamonds: 0,
+              liveMinutes: 0,
+              validLiveDays: 0,
+              active: false,
+              managerId: "",
+              managerName: "",
+              contacted: false,
+              contactedBy: "",
+              contactedAt: "",
+              createdAt: new Date().toISOString()
+            };
+            data.creators.push(creator);
+            inserted++;
+          } else {
+            updated++;
+          }
+
+          // Salvează statisticile istorice separat de profil.
+          const old = data.monthlyStats.find(s =>
+            s.creatorId === creator.id && s.month === month
+          );
+
+          const stats = {
+            creatorId: creator.id,
+            username: creator.username,
+            country,
+            month,
+            diamonds: row.diamonds,
+            liveMinutes: row.liveMinutes,
+            validLiveDays: row.validLiveDays,
+            importedAt: new Date().toISOString()
+          };
+
+          if (old) Object.assign(old, stats);
+          else data.monthlyStats.push(stats);
+
+          // Profilul curent este actualizat fără a șterge managerul
+          // sau istoricul de contact.
+          creator.name = row.name || creator.name;
+          creator.diamonds = row.diamonds;
+          creator.liveMinutes = row.liveMinutes;
+          creator.validLiveDays = row.validLiveDays;
+          creator.active = row.active;
+          creator.updatedAt = new Date().toISOString();
         });
 
-        body.appendChild(tr);
+        data.imports.unshift({
+          id: "imp_" + Date.now(),
+          country,
+          month,
+          count: pendingRows.length,
+          inserted,
+          updated,
+          date: new Date().toISOString()
+        });
+
+        return { inserted, updated };
       });
+
+      pendingRows = [];
+      $("vxRunImportBtn").disabled = true;
+      $("vxImportPreview").replaceChildren();
+
+      status(
+        `Import finalizat local: ${result.inserted} noi, ` +
+        `${result.updated} actualizați. Nu s-au trimis date în Supabase.`
+      );
+
+      renderHistory();
+      V.refresh();
+    } catch (error) {
+      status(error.message, true);
     }
-  };
+  }
 
-  window.VXRising = VXRising;
-})();
-</script>
+  function renderHistory() {
+    const host = $("vxImportHistory");
+    if (!host) return;
 
-<section id="vx-match-center" class="vx-module">
-  <div class="vx-header">
-    <div>
-      <h2 class="vx-heading">Match Center</h2>
-      <div class="vx-subheading">Organizarea meciurilor și a evenimentelor LIVE</div>
-    </div>
-  </div>
+    const data = DB.read();
+    host.replaceChildren();
 
-  <div class="vx-card">
-    <h3 class="vx-section-title">Meciuri și programări</h3>
-    <div class="vx-table-wrap">
-      <table class="vx-table">
-        <thead>
-          <tr>
-            <th>Creator</th>
-            <th>Adversar</th>
-            <th>Data</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody id="vx-match-body">
-          <tr><td colspan="4" class="vx-empty">Nu există meciuri încărcate.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
+    if (!data.imports.length) {
+      host.textContent = "No imports yet.";
+      return;
+    }
 
-<section id="vx-data-center" class="vx-module vx-section">
-  <div class="vx-card">
-    <h2 class="vx-heading">Data Center</h2>
-    <div class="vx-subheading">Monitorizarea importurilor și a datelor Backstage</div>
-    <div class="vx-grid" style="margin-top:18px">
-      <div class="vx-card">
-        <div class="vx-card-title">Ultimul import</div>
-        <div class="vx-card-value" id="vx-last-import">—</div>
-      </div>
-      <div class="vx-card">
-        <div class="vx-card-title">Țară</div>
-        <div class="vx-card-value" id="vx-last-country">—</div>
-      </div>
-      <div class="vx-card">
-        <div class="vx-card-title">Înregistrări</div>
-        <div class="vx-card-value" id="vx-last-count">0</div>
-      </div>
-      <div class="vx-card">
-        <div class="vx-card-title">Status</div>
-        <div class="vx-card-value vx-gold" id="vx-data-status">În așteptare</div>
-      </div>
-    </div>
-  </div>
-</section>
+    const table = document.createElement("table");
+    table.innerHTML = `
+      <thead><tr>
+        <th>Date</th><th>Country</th><th>Month</th>
+        <th>Rows</th><th>New</th><th>Updated</th>
+      </tr></thead>`;
 
-<section id="vx-settings" class="vx-module vx-section">
-  <div class="vx-card">
-    <h2 class="vx-heading">Empire Settings</h2>
-    <div class="vx-subheading">Configurarea aplicației și a accesului</div>
+    const tbody = document.createElement("tbody");
 
-    <div class="vx-divider"></div>
-
-    <h3 class="vx-section-title">Informații aplicație</h3>
-    <p class="vx-card-note">Nume: VORTYX EMPIRE</p>
-    <p class="vx-card-note">Piețe: România și Germania</p>
-    <p class="vx-card-note">Interfață: Matte Black / Royal Purple / Gold</p>
-
-    <div class="vx-divider"></div>
-
-    <h3 class="vx-section-title">Conectare</h3>
-    <div id="vx-connection-status" class="vx-status vx-status-warning">
-      Supabase: verificare necesară
-    </div>
-  </div>
-</section>
-
-<script>
-(function(){
-  "use strict";
-
-  window.VXEmpire = window.VXEmpire || {};
-
-  VXEmpire.setMatches = function(matches) {
-    const body = document.getElementById("vx-match-body");
-    body.replaceChildren();
-
-    (matches || []).forEach(match => {
+    data.imports.forEach(item => {
       const tr = document.createElement("tr");
-
       [
-        match.creator_name || "—",
-        match.opponent_name || "—",
-        match.match_date || "—",
-        match.status || "Programat"
+        new Date(item.date).toLocaleString(),
+        item.country, item.month, item.count,
+        item.inserted, item.updated
       ].forEach(value => {
         const td = document.createElement("td");
         td.textContent = value;
         tr.appendChild(td);
       });
+      tbody.appendChild(tr);
+    });
 
+    table.appendChild(tbody);
+    host.appendChild(table);
+  }
+
+  function loadTestData() {
+    const country = $("vxImportCountry").value;
+    const month = $("vxImportMonth").value ||
+      new Date().toISOString().slice(0, 7);
+
+    const samples = country === "RO"
+      ? [
+          ["Creator RO Test 01", "creator_ro_test01", 12000, 450, 12],
+          ["Creator RO Test 02", "creator_ro_test02", 8500, 310, 9],
+          ["Creator RO Test 03", "creator_ro_test03", 4300, 180, 6]
+        ]
+      : [
+          ["Creator DE Test 01", "creator_de_test01", 14000, 480, 13],
+          ["Creator DE Test 02", "creator_de_test02", 7200, 290, 8],
+          ["Creator DE Test 03", "creator_de_test03", 5100, 210, 7]
+        ];
+
+    pendingRows = samples.map(row => ({
+      name: row[0],
+      username: row[1],
+      diamonds: row[2],
+      liveMinutes: row[3],
+      validLiveDays: row[4],
+      active: true
+    }));
+
+    $("vxImportPreview").textContent =
+      `${pendingRows.length} test rows prepared for ${country}, ${month}.`;
+    $("vxRunImportBtn").disabled = false;
+    status("Test data loaded. Press Confirm import to save locally.");
+  }
+
+  function loadXlsxLibrary() {
+    if (window.XLSX) return;
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js";
+    script.async = true;
+    document.head.appendChild(script);
+  }
+
+  ensureImportUI();
+  loadXlsxLibrary();
+
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+  const V = window.VORTYX_OFFLINE;
+  if (!V) throw new Error("Add Parts 1–3 first.");
+
+  const DB = V.database;
+  const $ = id => document.getElementById(id);
+
+  function panel(pageId, id, title, description) {
+    const page = $("page-" + pageId);
+    if (!page || $(id)) return null;
+    const box = document.createElement("div");
+    box.id = id;
+    box.className = "panel";
+    box.innerHTML = `<h3>${title}</h3><p class="subtitle">${description}</p>`;
+    page.appendChild(box);
+    return box;
+  }
+
+  function safeText(tag, value) {
+    const el = document.createElement(tag);
+    el.textContent = value == null ? "" : String(value);
+    return el;
+  }
+
+  function renderRankings() {
+    const box = $("vxRankings");
+    if (!box) return;
+    box.replaceChildren();
+
+    const creators = DB.read().creators.slice()
+      .sort((a,b) => (Number(b.diamonds)||0) - (Number(a.diamonds)||0));
+
+    const table = document.createElement("table");
+    table.innerHTML = "<thead><tr><th>#</th><th>Creator</th><th>Country</th><th>Diamonds</th></tr></thead>";
+    const tbody = document.createElement("tbody");
+
+    creators.forEach((c, i) => {
+      const tr = document.createElement("tr");
+      [i+1, c.name, c.country, new Intl.NumberFormat("en-US").format(c.diamonds || 0)]
+        .forEach(v => tr.appendChild(safeText("td", v)));
+      tbody.appendChild(tr);
+    });
+
+    table.appendChild(tbody);
+    box.appendChild(table);
+  }
+
+  function renderRisingStars() {
+    const box = $("vxRising");
+    if (!box) return;
+    box.replaceChildren();
+
+    const data = DB.read();
+    const previousMonth = new Date();
+    previousMonth.setMonth(previousMonth.getMonth() - 1);
+    const month = previousMonth.toISOString().slice(0,7);
+
+    const previous = data.monthlyStats.filter(s => s.month === month);
+    const ranked = previous.map(stat => {
+      const creator = data.creators.find(c => c.id === stat.creatorId);
+      return { ...stat, name: creator?.name || stat.username };
+    }).sort((a,b) =>
+      (b.diamonds + b.liveMinutes + b.validLiveDays) -
+      (a.diamonds + a.liveMinutes + a.validLiveDays)
+    );
+
+    const note = safeText("p",
+      `Historical data period: ${month}. Ranking uses diamonds, LIVE minutes and valid LIVE days.`
+    );
+    note.className = "subtitle";
+    box.appendChild(note);
+
+    const table = document.createElement("table");
+    table.innerHTML = "<thead><tr><th>#</th><th>Creator</th><th>Country</th><th>Diamonds</th><th>LIVE min.</th><th>Valid days</th></tr></thead>";
+    const tbody = document.createElement("tbody");
+
+    ranked.forEach((s,i) => {
+      const tr = document.createElement("tr");
+      [i+1,s.name,s.country,s.diamonds,s.liveMinutes,s.validLiveDays]
+        .forEach(v => tr.appendChild(safeText("td",v)));
+      tbody.appendChild(tr);
+    });
+
+    table.appendChild(tbody);
+    box.appendChild(table);
+  }
+
+  function renderManagers() {
+    const box = $("vxManagers");
+    if (!box) return;
+    box.replaceChildren();
+
+    const data = DB.read();
+    const add = document.createElement("button");
+    add.className = "btn btn-primary";
+    add.textContent = "+ Add manager";
+    add.onclick = () => {
+      const name = prompt("Manager display name:");
+      if (!name) return;
+      const country = prompt("Country: RO or DE", "RO");
+      try {
+        V.addManager(name, country);
+        renderManagers();
+      } catch (e) { alert(e.message); }
+    };
+    box.appendChild(add);
+
+    const table = document.createElement("table");
+    table.innerHTML = "<thead><tr><th>Manager</th><th>Country</th><th>Assigned creators</th></tr></thead>";
+    const tbody = document.createElement("tbody");
+
+    data.managers.forEach(m => {
+      const count = data.creators.filter(c => c.managerId === m.id).length;
+      const tr = document.createElement("tr");
+      [m.displayName,m.country,count].forEach(v => tr.appendChild(safeText("td",v)));
+      tbody.appendChild(tr);
+    });
+
+    table.appendChild(tbody);
+    box.appendChild(table);
+
+    const heading = safeText("h3","Assign manager to creator");
+    heading.style.marginTop = "24px";
+    box.appendChild(heading);
+
+    const creatorSelect = document.createElement("select");
+    creatorSelect.className = "field";
+    creatorSelect.id = "vxAssignCreator";
+    creatorSelect.appendChild(new Option("Select creator",""));
+
+    data.creators.forEach(c => creatorSelect.appendChild(
+      new Option(`${c.name} (${c.country})`,c.id)
+    ));
+
+    const managerSelect = document.createElement("select");
+    managerSelect.className = "field";
+    managerSelect.id = "vxAssignManager";
+    managerSelect.appendChild(new Option("Unassigned",""));
+
+    managerSelect.addEventListener("change", () => {
+      const creator = data.creators.find(c => c.id === creatorSelect.value);
+      Array.from(managerSelect.options).forEach(option => {
+        if (!option.value) return;
+        const manager = data.managers.find(m => m.id === option.value);
+        option.hidden = Boolean(creator && manager && manager.country !== creator.country);
+      });
+    });
+
+    data.managers.forEach(m => managerSelect.appendChild(
+      new Option(`${m.displayName} (${m.country})`,m.id)
+    ));
+
+    const assign = document.createElement("button");
+    assign.className = "btn btn-primary";
+    assign.textContent = "Save assignment";
+    assign.onclick = () => {
+      if (!creatorSelect.value) return alert("Select a creator.");
+      try {
+        V.assignManager(creatorSelect.value,managerSelect.value);
+        renderManagers();
+      } catch(e) { alert(e.message); }
+    };
+
+    const row = document.createElement("div");
+    row.className = "toolbar";
+    row.append(creatorSelect,managerSelect,assign);
+    box.appendChild(row);
+
+    const contactHeading = safeText("h3","Record creator contact");
+    contactHeading.style.marginTop = "24px";
+    box.appendChild(contactHeading);
+
+    const contactCreator = document.createElement("select");
+    contactCreator.className = "field";
+    contactCreator.appendChild(new Option("Select creator",""));
+    data.creators.forEach(c => contactCreator.appendChild(
+      new Option(`${c.name} (${c.country})`,c.id)
+    ));
+
+    const contactManager = document.createElement("select");
+    contactManager.className = "field";
+    contactManager.appendChild(new Option("Select manager",""));
+    data.managers.forEach(m => contactManager.appendChild(
+      new Option(`${m.displayName} (${m.country})`,m.id)
+    ));
+
+    const contactButton = document.createElement("button");
+    contactButton.className = "btn";
+    contactButton.textContent = "Mark contacted";
+    contactButton.onclick = () => {
+      try {
+        V.markContacted(contactCreator.value,contactManager.value);
+        alert("Contact recorded locally.");
+        renderManagers();
+      } catch(e) { alert(e.message); }
+    };
+
+    const contactRow = document.createElement("div");
+    contactRow.className = "toolbar";
+    contactRow.append(contactCreator,contactManager,contactButton);
+    box.appendChild(contactRow);
+  }
+
+  function renderRecruitment() {
+    const box = $("vxRecruitment");
+    if (!box) return;
+    box.replaceChildren();
+
+    const links = [
+      ["Romania","https://www.tiktok.com/t/ZSqTWLUsm/"],
+      ["Germany","https://www.tiktok.com/t/ZSggE3nym/"]
+    ];
+
+    links.forEach(([label,url]) => {
+      const row = document.createElement("div");
+      row.className = "toolbar";
+      const name = safeText("strong",label);
+      const link = document.createElement("a");
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Open invitation link";
+      link.style.color = "#b995ff";
+      row.append(name,link);
+      box.appendChild(row);
+    });
+
+    const target = safeText("p","Monthly recruitment target: 20–30 creators.");
+    target.className = "subtitle";
+    box.appendChild(target);
+  }
+
+  function init() {
+    panel("rankings","vxRankings","Creator Rankings","Ranked by diamonds.");
+    panel("rising","vxRising","RISING STARS","Previous-month creator performance.");
+    panel("team","vxManagers","Manager Network","Managers, assignments and contact history.");
+    panel("recruitment","vxRecruitment","Recruitment links","Official VORTYX invitation links.");
+
+    renderRankings();
+    renderRisingStars();
+    renderManagers();
+    renderRecruitment();
+  }
+
+  init();
+
+  window.VORTYX_MODULES = {
+    renderRankings,
+    renderRisingStars,
+    renderManagers,
+    renderRecruitment
+  };
+})();
+</script>
+<script>
+(function () {
+  "use strict";
+
+  const V = window.VORTYX_OFFLINE;
+  if (!V) throw new Error("Add Parts 1–4 first.");
+
+  const DB = V.database;
+  const $ = id => document.getElementById(id);
+
+  function addPanel() {
+    const page = $("page-settings");
+    if (!page || $("vxFinalSettings")) return;
+
+    const box = document.createElement("div");
+    box.id = "vxFinalSettings";
+    box.className = "panel";
+    box.innerHTML = `
+      <h3>VORTYX AGENCY · Offline tools</h3>
+      <p class="subtitle">Local data backup and restore. No Supabase writes.</p>
+      <div class="toolbar">
+        <button class="btn btn-primary" id="vxExport">Export backup</button>
+        <label class="btn">
+          Import backup
+          <input type="file" id="vxRestoreFile" accept=".json" hidden>
+        </label>
+        <button class="btn" id="vxTest">Run offline tests</button>
+      </div>
+      <div id="vxFinalStatus" class="subtitle">Offline mode active.</div>
+      <div id="vxTestResults"></div>
+      <div class="section-title">Data overview</div>
+      <div id="vxDataOverview"></div>
+    `;
+    page.appendChild(box);
+
+    $("vxExport").addEventListener("click", exportBackup);
+    $("vxRestoreFile").addEventListener("change", restoreBackup);
+    $("vxTest").addEventListener("click", runTests);
+
+    updateOverview();
+  }
+
+  function message(text, error) {
+    const el = $("vxFinalStatus");
+    if (!el) return;
+    el.textContent = text;
+    el.style.color = error ? "#ff657d" : "#48d6a0";
+  }
+
+  function exportBackup() {
+    try {
+      const data = DB.read();
+      const payload = {
+        application: "VORTYX AGENCY",
+        formatVersion: 1,
+        exportedAt: new Date().toISOString(),
+        data
+      };
+
+      const blob = new Blob(
+        [JSON.stringify(payload,null,2)],
+        {type:"application/json"}
+      );
+
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `VORTYX_AGENCY_BACKUP_${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      message("Backup exported successfully.");
+    } catch(e) {
+      message("Backup failed: " + e.message,true);
+    }
+  }
+
+  async function restoreBackup(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const payload = JSON.parse(await file.text());
+      const data = payload.data;
+
+      if (
+        payload.application !== "VORTYX AGENCY" ||
+        !data ||
+        !Array.isArray(data.creators) ||
+        !Array.isArray(data.managers) ||
+        !Array.isArray(data.imports) ||
+        !Array.isArray(data.monthlyStats)
+      ) {
+        throw new Error("Invalid VORTYX backup file.");
+      }
+
+      if (!confirm(
+        "Restore this backup? Current offline data will be replaced."
+      )) return;
+
+      DB.write({
+        creators:data.creators,
+        managers:data.managers,
+        imports:data.imports,
+        monthlyStats:data.monthlyStats,
+        activity:Array.isArray(data.activity) ? data.activity : []
+      });
+
+      V.refresh();
+      window.VORTYX_MODULES?.renderRankings();
+      window.VORTYX_MODULES?.renderRisingStars();
+      window.VORTYX_MODULES?.renderManagers();
+
+      message("Backup restored successfully.");
+      updateOverview();
+    } catch(e) {
+      message("Restore failed: " + e.message,true);
+    } finally {
+      event.target.value = "";
+    }
+  }
+
+  function updateOverview() {
+    const host = $("vxDataOverview");
+    if (!host) return;
+
+    const data = DB.read();
+    host.replaceChildren();
+
+    const rows = [
+      ["Creators",data.creators.length],
+      ["Managers",data.managers.length],
+      ["Imports",data.imports.length],
+      ["Monthly historical records",data.monthlyStats.length],
+      ["Activity records",data.activity.length]
+    ];
+
+    const table = document.createElement("table");
+    const body = document.createElement("tbody");
+
+    rows.forEach(([label,value]) => {
+      const tr = document.createElement("tr");
+      const a = document.createElement("td");
+      const b = document.createElement("td");
+      a.textContent = label;
+      b.textContent = value;
+      tr.append(a,b);
       body.appendChild(tr);
     });
 
-    if (!matches?.length) {
-      body.innerHTML =
-        '<tr><td colspan="4" class="vx-empty">Nu există meciuri încărcate.</td></tr>';
-    }
+    table.appendChild(body);
+    host.appendChild(table);
+  }
+
+  function runTests() {
+    const results = [];
+    const check = (name, fn) => {
+      try {
+        const result = fn();
+        results.push({name,ok:result !== false});
+      } catch(e) {
+        results.push({name,ok:false,error:e.message});
+      }
+    };
+
+    check("Offline database can be read", () => {
+      const data = DB.read();
+      return Array.isArray(data.creators) &&
+        Array.isArray(data.managers);
+    });
+
+    check("Country normalization RO", () =>
+      normalizeCountryForTest("Romania") === "RO"
+    );
+
+    check("Country normalization DE", () =>
+      normalizeCountryForTest("Germany") === "DE"
+    );
+
+    check("Creator records have country separation", () => {
+      const data = DB.read();
+      return data.creators.every(c => ["RO","DE"].includes(c.country));
+    });
+
+    check("Monthly statistics stored separately", () => {
+      const data = DB.read();
+      return Array.isArray(data.monthlyStats);
+    });
+
+    check("Creator contact fields available", () => {
+      const data = DB.read();
+      return data.creators.every(c =>
+        "contacted" in c &&
+        "contactedBy" in c &&
+        "contactedAt" in c
+      );
+    });
+
+    const host = $("vxTestResults");
+    host.replaceChildren();
+
+    const table = document.createElement("table");
+    table.innerHTML = "<thead><tr><th>Test</th><th>Result</th></tr></thead>";
+    const body = document.createElement("tbody");
+
+    results.forEach(r => {
+      const tr = document.createElement("tr");
+      const name = document.createElement("td");
+      const result = document.createElement("td");
+      name.textContent = r.name;
+      result.textContent = r.ok ? "PASS" : "FAIL " + (r.error || "");
+      result.style.color = r.ok ? "#48d6a0" : "#ff657d";
+      tr.append(name,result);
+      body.appendChild(tr);
+    });
+
+    table.appendChild(body);
+    host.appendChild(table);
+
+    const passed = results.filter(r => r.ok).length;
+    message(`Offline checks: ${passed}/${results.length} passed.`,
+      passed !== results.length);
+    updateOverview();
+  }
+
+  function normalizeCountryForTest(value) {
+    const v = String(value).toLowerCase();
+    if (["ro","romania","românia"].includes(v)) return "RO";
+    if (["de","germany","deutschland","germania"].includes(v)) return "DE";
+    return "";
+  }
+
+  addPanel();
+
+  // Refresh displayed modules after data changes.
+  const originalRefresh = V.refresh;
+  V.refresh = function () {
+    originalRefresh();
+    window.VORTYX_MODULES?.renderRankings();
+    window.VORTYX_MODULES?.renderRisingStars();
+    window.VORTYX_MODULES?.renderManagers();
+    updateOverview();
   };
 
-  VXEmpire.setImportStatus = function(info) {
-    document.getElementById("vx-last-import").textContent =
-      info?.month || "—";
-    document.getElementById("vx-last-country").textContent =
-      info?.country || "—";
-    document.getElementById("vx-last-count").textContent =
-      info?.count ?? 0;
-    document.getElementById("vx-data-status").textContent =
-      info?.status || "În așteptare";
-  };
+  document.addEventListener("DOMContentLoaded", () => {
+    addPanel();
+    updateOverview();
+  });
 
 })();
 </script>
